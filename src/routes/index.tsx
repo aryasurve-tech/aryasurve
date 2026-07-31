@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowRight, Megaphone, Cpu } from "lucide-react";
-import aryaAsset from "@/assets/arya.jpg.asset.json";
+import aryaAsset from "@/assets/arya2.jpg.asset.json";
 import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/")({
@@ -115,6 +115,15 @@ function Home() {
                 className="aspect-[4/5] w-full object-cover object-[60%_30%]"
               />
             </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-5 text-center text-sm italic text-muted-foreground"
+            >
+              I don't care if you think I look ugly ;)
+            </motion.p>
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
