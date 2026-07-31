@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { Mail, Phone, MessageCircle, CalendarClock, Linkedin } from "lucide-react";
 import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
+import { Aurora, TiltCard } from "@/components/site/Motion";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -55,6 +56,7 @@ function Contact() {
   return (
     <section className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 grid-lines opacity-50" />
+      <Aurora />
       <div className="relative mx-auto max-w-5xl px-5 py-20 md:py-28">
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
@@ -62,7 +64,16 @@ function Contact() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-2xl text-5xl font-semibold leading-[1.05] md:text-6xl"
         >
-          Let's talk.
+          <span className="block overflow-hidden pb-1">
+            <motion.span
+              className="block"
+              initial={{ y: "115%", rotate: 3 }}
+              animate={{ y: "0%", rotate: 0 }}
+              transition={{ duration: 0.95, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Let's talk.
+            </motion.span>
+          </span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
@@ -76,11 +87,12 @@ function Contact() {
         <Stagger className="mt-12 grid gap-4 sm:grid-cols-2">
           {channels.map((c) => (
             <StaggerItem key={c.label} className={c.primary ? "sm:col-span-2" : undefined}>
+              <TiltCard>
               <a
                 href={c.href}
                 target={c.href.startsWith("http") ? "_blank" : undefined}
                 rel="noreferrer"
-                className={`group flex items-center justify-between gap-4 rounded-3xl border p-7 transition-all hover:-translate-y-1 hover:shadow-[0_24px_60px_-36px_rgba(0,0,0,0.35)] ${
+                className={`group flex items-center justify-between gap-4 rounded-3xl border p-7 transition-shadow hover:shadow-[0_24px_60px_-36px_rgba(0,0,0,0.35)] ${
                   c.primary
                     ? "border-transparent bg-foreground text-background"
                     : "border-border bg-background"
@@ -97,11 +109,12 @@ function Contact() {
                   <p className="mt-2 font-display text-lg break-all">{c.value}</p>
                 </div>
                 <c.icon
-                  className={`size-6 shrink-0 transition-transform group-hover:scale-110 ${
+                  className={`size-6 shrink-0 transition-transform group-hover:-rotate-12 group-hover:scale-125 ${
                     c.primary ? "" : "text-accent"
                   }`}
                 />
               </a>
+              </TiltCard>
             </StaggerItem>
           ))}
         </Stagger>

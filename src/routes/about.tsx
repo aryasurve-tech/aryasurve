@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { ArrowRight, Linkedin } from "lucide-react";
 import aryaAsset from "@/assets/arya2.jpg.asset.json";
 import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
+import { Aurora, Magnetic, Parallax, TiltCard, WordReveal } from "@/components/site/Motion";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -57,20 +58,28 @@ function About() {
     <>
       <section className="relative overflow-hidden border-b border-border">
         <div className="pointer-events-none absolute inset-0 grid-lines opacity-50" />
+        <Aurora />
         <div className="relative mx-auto grid max-w-6xl gap-12 px-5 pt-16 pb-16 md:grid-cols-[0.85fr_1fr] md:items-center md:pt-24">
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden rounded-[2rem] border border-border bg-surface"
+            initial={{ opacity: 0, scale: 0.94, rotate: -2 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <img
-              src={aryaAsset.url}
-              alt="Arya Surve outdoors in the hills"
-              width={1280}
-              height={960}
-              className="aspect-[4/5] w-full object-cover object-[60%_30%]"
-            />
+            <TiltCard className="overflow-hidden rounded-[2rem] border border-border bg-surface">
+              <motion.img
+                src={aryaAsset.url}
+                alt="Arya Surve outdoors in the hills"
+                width={1280}
+                height={960}
+                className="aspect-[4/5] w-full object-cover object-[60%_30%]"
+                initial={{ scale: 1.16 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </TiltCard>
+            <p className="mt-4 text-center text-sm italic text-muted-foreground">
+              I don't care if you think I look ugly ;)
+            </p>
           </motion.div>
           <div>
             <motion.h1
@@ -79,7 +88,22 @@ function About() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="text-5xl font-semibold leading-[1.05] md:text-6xl"
             >
-              I'm still 14. Still nowhere near finished.
+              {["I'm still 14.", "Still nowhere", "near finished."].map((line, i) => (
+                <span key={line} className="block overflow-hidden pb-1">
+                  <motion.span
+                    className="block"
+                    initial={{ y: "115%", rotate: 3 }}
+                    animate={{ y: "0%", rotate: 0 }}
+                    transition={{
+                      duration: 0.95,
+                      delay: 0.12 + i * 0.13,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
+                    {line}
+                  </motion.span>
+                </span>
+              ))}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0 }}
@@ -104,12 +128,14 @@ function About() {
               >
                 <Linkedin className="size-4" /> Connect on LinkedIn
               </a>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition-transform hover:-translate-y-0.5"
-              >
-                Say hello <ArrowRight className="size-4" />
-              </Link>
+              <Magnetic>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background"
+                >
+                  Say hello <ArrowRight className="size-4" />
+                </Link>
+              </Magnetic>
             </motion.div>
           </div>
         </div>
@@ -120,22 +146,45 @@ function About() {
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
             The short version
           </p>
-          <h2 className="mt-4 text-4xl font-semibold md:text-5xl">How it went</h2>
+          <h2 className="mt-4 text-4xl font-semibold md:text-5xl">
+            <WordReveal text="How it went" />
+          </h2>
         </Reveal>
         <Stagger className="mt-12 space-y-px">
           {timeline.map((t) => (
             <StaggerItem
               key={t.title}
-              className="grid gap-2 border-t border-border py-8 md:grid-cols-[140px_1fr] md:gap-8"
+              className="group relative grid gap-2 border-t border-border py-8 md:grid-cols-[140px_1fr] md:gap-8"
             >
+              <motion.span
+                className="absolute left-0 top-0 h-px bg-accent"
+                initial={{ width: "0%" }}
+                whileInView={{ width: "100%" }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              />
               <p className="font-display text-sm text-accent">{t.year}</p>
-              <div>
+              <motion.div
+                whileHover={{ x: 8 }}
+                transition={{ type: "spring", stiffness: 260, damping: 22 }}
+              >
                 <h3 className="text-xl font-semibold">{t.title}</h3>
                 <p className="mt-2 text-muted-foreground">{t.body}</p>
-              </div>
+              </motion.div>
             </StaggerItem>
           ))}
         </Stagger>
+      </section>
+
+      <section className="border-t border-border bg-surface">
+        <div className="mx-auto max-w-3xl px-5 py-20 text-center md:py-28">
+          <Parallax distance={30}>
+            <p className="font-display text-2xl leading-relaxed md:text-3xl">
+              "Every rejection taught me something another tutorial couldn't."
+            </p>
+            <p className="mt-6 text-sm text-muted-foreground">Arya Surve</p>
+          </Parallax>
+        </div>
       </section>
     </>
   );

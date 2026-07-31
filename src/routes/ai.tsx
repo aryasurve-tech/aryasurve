@@ -3,6 +3,14 @@ import { motion } from "motion/react";
 import { ArrowRight, Workflow, Bot, Zap, Database } from "lucide-react";
 import aiImg from "@/assets/ai.jpg";
 import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
+import {
+  Aurora,
+  Magnetic,
+  Marquee,
+  Parallax,
+  TiltCard,
+  WordReveal,
+} from "@/components/site/Motion";
 
 export const Route = createFileRoute("/ai")({
   head: () => ({
@@ -52,6 +60,7 @@ function AI() {
     <>
       <section className="relative overflow-hidden border-b border-border">
         <div className="pointer-events-none absolute inset-0 grid-lines opacity-50" />
+        <Aurora />
         <div className="relative mx-auto grid max-w-6xl gap-12 px-5 pt-16 pb-16 md:grid-cols-[1fr_0.85fr] md:items-center md:pt-24">
           <div>
             <motion.p
@@ -69,7 +78,22 @@ function AI() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="mt-6 text-5xl font-semibold leading-[1.04] md:text-7xl"
             >
-              AI that does the boring part.
+              {["AI that does", "the boring part."].map((line, i) => (
+                <span key={line} className="block overflow-hidden pb-1">
+                  <motion.span
+                    className="block"
+                    initial={{ y: "115%", rotate: 3 }}
+                    animate={{ y: "0%", rotate: 0 }}
+                    transition={{
+                      duration: 0.95,
+                      delay: 0.15 + i * 0.14,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
+                    {line}
+                  </motion.span>
+                </span>
+              ))}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0 }}
@@ -87,21 +111,24 @@ function AI() {
               transition={{ duration: 0.7, delay: 0.45 }}
               className="mt-9"
             >
-              <a
-                href="https://cal.com/arya-surve-eojakp/call"
-                target="_blank"
-                rel="noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background transition-transform hover:-translate-y-0.5"
-              >
-                Talk through an idea
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-              </a>
+              <Magnetic>
+                <a
+                  href="https://cal.com/arya-surve-eojakp/call"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background"
+                >
+                  <span className="absolute inset-0 -translate-x-full bg-accent transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0" />
+                  <span className="relative">Talk through an idea</span>
+                  <ArrowRight className="relative size-4 transition-transform group-hover:translate-x-1" />
+                </a>
+              </Magnetic>
             </motion.div>
           </div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.96, rotate: 2 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden rounded-[2rem] border border-border bg-surface"
           >
@@ -124,18 +151,30 @@ function AI() {
             What I build
           </p>
           <h2 className="mt-4 max-w-2xl text-4xl font-semibold md:text-5xl">
-            Small systems, big hours saved.
+            <WordReveal text="Small systems, big hours saved." />
           </h2>
         </Reveal>
         <Stagger className="mt-12 grid gap-6 sm:grid-cols-2">
           {capabilities.map((c) => (
-            <StaggerItem
-              key={c.title}
-              className="relative overflow-hidden rounded-3xl border border-border p-7 transition-all hover:-translate-y-1 hover:shadow-[0_24px_60px_-36px_rgba(0,0,0,0.35)]"
-            >
-              <c.icon className="size-7 text-accent" />
-              <h3 className="mt-5 text-xl font-semibold">{c.title}</h3>
-              <p className="mt-2 text-muted-foreground">{c.body}</p>
+            <StaggerItem key={c.title}>
+              <TiltCard className="group relative h-full overflow-hidden rounded-3xl border border-border p-7 transition-shadow hover:shadow-[0_24px_60px_-36px_rgba(0,0,0,0.35)]">
+                <span
+                  className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  style={{
+                    background:
+                      "radial-gradient(500px circle at 50% 0%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 60%)",
+                  }}
+                />
+                <motion.span
+                  className="relative inline-block"
+                  whileHover={{ rotate: 8, scale: 1.15 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 14 }}
+                >
+                  <c.icon className="size-7 text-accent" />
+                </motion.span>
+                <h3 className="relative mt-5 text-xl font-semibold">{c.title}</h3>
+                <p className="relative mt-2 text-muted-foreground">{c.body}</p>
+              </TiltCard>
             </StaggerItem>
           ))}
         </Stagger>
@@ -144,7 +183,9 @@ function AI() {
       <section className="border-y border-border bg-surface">
         <div className="mx-auto max-w-6xl px-5 py-20">
           <Reveal>
-            <h2 className="text-4xl font-semibold md:text-5xl">How I work on it</h2>
+            <h2 className="text-4xl font-semibold md:text-5xl">
+              <WordReveal text="How I work on it" />
+            </h2>
           </Reveal>
           <Stagger className="mt-12 grid gap-8 md:grid-cols-3">
             {[
@@ -164,8 +205,15 @@ function AI() {
                 d: "Keep what earns its place, drop what doesn't, then repeat.",
               },
             ].map((s) => (
-              <StaggerItem key={s.n} className="border-t border-foreground/15 pt-6">
-                <p className="font-display text-4xl text-accent">{s.n}</p>
+              <StaggerItem key={s.n} className="group border-t border-foreground/15 pt-6">
+                <motion.p
+                  className="font-display text-4xl text-accent"
+                  whileInView={{ opacity: [0, 1], x: [-16, 0] }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {s.n}
+                </motion.p>
                 <h3 className="mt-4 text-xl font-semibold">{s.t}</h3>
                 <p className="mt-2 text-muted-foreground">{s.d}</p>
               </StaggerItem>
@@ -176,18 +224,31 @@ function AI() {
 
       <section className="mx-auto max-w-3xl px-5 py-20 text-center md:py-28">
         <Reveal>
-          <h2 className="text-4xl font-semibold md:text-5xl">Got something repetitive?</h2>
+          <h2 className="text-4xl font-semibold md:text-5xl">
+            <WordReveal text="Got something repetitive?" />
+          </h2>
           <p className="mt-4 text-muted-foreground">
             Tell me the task you hate doing every week. That's usually the right place to start.
           </p>
-          <Link
-            to="/contact"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background transition-transform hover:-translate-y-0.5"
-          >
-            Contact me
-            <ArrowRight className="size-4" />
-          </Link>
+          <Magnetic className="mt-8">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background"
+            >
+              Contact me
+              <ArrowRight className="size-4" />
+            </Link>
+          </Magnetic>
         </Reveal>
+      </section>
+
+      <section className="overflow-hidden border-t border-border py-8">
+        <Parallax distance={30}>
+          <Marquee
+            className="font-display text-2xl text-muted-foreground/60"
+            items={["Automation", "Workflows", "AI assistants", "Less busywork", "Ship fast"]}
+          />
+        </Parallax>
       </section>
     </>
   );

@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Magnetic } from "@/components/site/Motion";
 
 const links = [
   { to: "/", label: "Home" },
@@ -17,9 +18,17 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-        <Link to="/" className="font-display text-lg tracking-tight">
-          Arya Surve
-          <span className="text-accent">.</span>
+        <Link to="/" className="group font-display text-lg tracking-tight">
+          <motion.span className="inline-block" whileHover={{ y: -2 }}>
+            Arya Surve
+          </motion.span>
+          <motion.span
+            className="inline-block text-accent"
+            animate={{ opacity: [1, 0.25, 1] }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            .
+          </motion.span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
@@ -28,19 +37,22 @@ export function Nav() {
               key={l.to}
               to={l.to}
               activeOptions={{ exact: l.to === "/" }}
-              className="rounded-full px-3.5 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground data-[status=active]:bg-secondary data-[status=active]:text-foreground"
+              className="relative rounded-full px-3.5 py-2 text-sm text-muted-foreground transition-colors after:absolute after:bottom-1 after:left-3.5 after:right-3.5 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100 data-[status=active]:bg-secondary data-[status=active]:text-foreground"
             >
               {l.label}
             </Link>
           ))}
-          <a
-            href="https://cal.com/arya-surve-eojakp/call"
-            target="_blank"
-            rel="noreferrer"
-            className="ml-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-transform hover:-translate-y-0.5"
-          >
-            Book a call
-          </a>
+          <Magnetic className="ml-2" strength={0.25}>
+            <a
+              href="https://cal.com/arya-surve-eojakp/call"
+              target="_blank"
+              rel="noreferrer"
+              className="group relative inline-flex overflow-hidden rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background"
+            >
+              <span className="absolute inset-0 -translate-x-full bg-accent transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0" />
+              <span className="relative">Book a call</span>
+            </a>
+          </Magnetic>
         </nav>
 
         <button
