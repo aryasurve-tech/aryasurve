@@ -51,7 +51,6 @@ function Home() {
     stiffness: 80,
     damping: 20,
   });
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
   const gridScale = useTransform(scrollYProgress, [0, 1], [1, 1.25]);
 
   return (
@@ -63,7 +62,7 @@ function Home() {
         />
         <Aurora />
         <motion.div
-          style={{ y: heroY, opacity: heroOpacity }}
+          style={{ y: heroY }}
           className="relative mx-auto grid max-w-6xl gap-12 px-5 pt-16 pb-20 md:grid-cols-[1.1fr_0.9fr] md:items-center md:pt-24 md:pb-28"
         >
           <div>
