@@ -86,6 +86,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "Arya Surve" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { title: "Arya Surve — Influencer Marketing & AI | 14" },
+      { property: "og:title", content: "Arya Surve — Influencer Marketing & AI | 14" },
+      { name: "twitter:title", content: "Arya Surve — Influencer Marketing & AI | 14" },
+      { name: "description", content: "I'm Arya Surve, 14. I run creator campaigns in influencer marketing with Fameo Media, and I build AI automations. Still learning, still building." },
+      { property: "og:description", content: "I'm Arya Surve, 14. I run creator campaigns in influencer marketing with Fameo Media, and I build AI automations. Still learning, still building." },
+      { name: "twitter:description", content: "I'm Arya Surve, 14. I run creator campaigns in influencer marketing with Fameo Media, and I build AI automations. Still learning, still building." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/30c810b0-13ef-4163-a99d-80dc22c23d0b" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/30c810b0-13ef-4163-a99d-80dc22c23d0b" },
     ],
     links: [
       {
@@ -98,7 +106,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
   shellComponent: RootShell,

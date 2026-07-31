@@ -18,17 +18,17 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Arya Surve — Influencer Marketing & AI, at 14" },
+      { title: "Arya Surve — Influencer Marketing & AI | 14" },
       {
         name: "description",
         content:
           "I'm Arya Surve, 14. I run creator campaigns in influencer marketing with Fameo Media, and I build AI automations. Still learning, still building.",
       },
-      { property: "og:title", content: "Arya Surve — Influencer Marketing & AI, at 14" },
+      { property: "og:title", content: "Arya Surve — Influencer Marketing & AI | 14" },
       {
         property: "og:description",
         content:
-          "Creator campaigns with Fameo Media and AI automation. 1,000+ cold outreaches, 100+ conversations, and a lot of lessons.",
+          "I'm Arya Surve, 14. I run creator campaigns in influencer marketing with Fameo Media, and I build AI automations. Still learning, still building.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
