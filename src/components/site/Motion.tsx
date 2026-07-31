@@ -31,8 +31,8 @@ export function Parallax({
   className,
 }: {
   children: ReactNode;
-  distance?: number;
-  className?: string;
+  distance?: number | undefined;
+  className?: string | undefined;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
@@ -53,9 +53,9 @@ export function WordReveal({
   once = true,
 }: {
   text: string;
-  className?: string;
-  delay?: number;
-  once?: boolean;
+  className?: string | undefined;
+  delay?: number | undefined;
+  once?: boolean | undefined;
 }) {
   const words = text.split(" ");
   return (
@@ -96,8 +96,8 @@ export function Magnetic({
   strength = 0.35,
 }: {
   children: ReactNode;
-  className?: string;
-  strength?: number;
+  className?: string | undefined;
+  strength?: number | undefined;
 }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -160,8 +160,8 @@ export function CountUp({
   duration = 1.6,
 }: {
   value: string;
-  className?: string;
-  duration?: number;
+  className?: string | undefined;
+  duration?: number | undefined;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -221,9 +221,9 @@ export function Marquee({
   className,
 }: {
   items: string[];
-  reverse?: boolean;
-  speed?: number;
-  className?: string;
+  reverse?: boolean | undefined;
+  speed?: number | undefined;
+  className?: string | undefined;
 }) {
   return (
     <div className={cn("relative overflow-hidden", className)}>
