@@ -100,10 +100,58 @@ function InfluencerMarketing() {
         </div>
       </section>
 
+      <section className="border-b border-border">
+        <Stagger className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-5 py-14 md:grid-cols-4">
+          {[
+            { value: "5,000+", label: "Creators in the network" },
+            { value: "100K–5M", label: "Follower range" },
+            { value: "5", label: "Core niches" },
+            { value: "0", label: "Agency fee on a trial campaign" },
+          ].map((s) => (
+            <StaggerItem key={s.label} className="text-center md:text-left">
+              <p className="font-display text-3xl md:text-4xl">{s.value}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </section>
+
       <section className="mx-auto max-w-6xl px-5 py-20 md:py-28">
+        <Reveal>
+          <p className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
+            Niches we cover
+          </p>
+          <h2 className="mt-4 max-w-2xl text-4xl font-semibold md:text-5xl">
+            The right creator beats the biggest creator.
+          </h2>
+          <p className="mt-4 max-w-xl text-muted-foreground">
+            Creators are shortlisted on brand category, audience demographics, campaign objective and
+            real engagement quality — never a random list.
+          </p>
+        </Reveal>
+        <Stagger className="mt-10 flex flex-wrap gap-3">
+          {[
+            "Fashion & Lifestyle",
+            "Entertainment",
+            "Comedy",
+            "Fitness & Gym",
+            "General Lifestyle",
+            "Verified bloggers",
+          ].map((n) => (
+            <StaggerItem key={n}>
+              <span className="inline-flex rounded-full border border-border bg-surface px-4 py-2 text-sm transition-colors hover:border-foreground/40">
+                {n}
+              </span>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 pb-20 md:pb-28">
         <Reveal>
           <h2 className="max-w-2xl text-4xl font-semibold md:text-5xl">How a campaign runs</h2>
         </Reveal>
+
         <Stagger className="mt-12 grid gap-6 sm:grid-cols-2">
           {steps.map((s, i) => (
             <StaggerItem
