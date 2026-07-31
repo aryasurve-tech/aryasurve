@@ -216,7 +216,31 @@ function InfluencerMarketing() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-5 py-20 md:py-28">
+        <Reveal className="rounded-[2rem] border border-transparent bg-foreground p-8 text-background md:p-12">
+          <p className="text-xs font-medium uppercase tracking-[0.22em] text-background/70">
+            Trial campaign
+          </p>
+          <h2 className="mt-4 max-w-2xl text-3xl font-semibold md:text-4xl">
+            Test us with zero agency fees.
+          </h2>
+          <p className="mt-4 max-w-xl text-background/80">
+            For new brands we run a trial campaign where you only pay creator cost — no agency fee.
+            You get to judge creator quality and execution first. If it performs, we scale it into a
+            long-term partnership.
+          </p>
+          <Link
+            to="/contact"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-background px-6 py-3.5 text-sm font-medium text-foreground transition-transform hover:-translate-y-0.5"
+          >
+            Ask about a trial
+            <ArrowRight className="size-4" />
+          </Link>
+        </Reveal>
+      </section>
+
       <section className="mx-auto max-w-3xl px-5 py-20 text-center md:py-28">
+
         <Reveal>
           <p className="font-display text-2xl leading-relaxed md:text-3xl">
             "I reached out to over 1,000 people and heard no more times than I can count. Influencer
