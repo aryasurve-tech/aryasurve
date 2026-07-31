@@ -77,9 +77,10 @@ function InfluencerMarketing() {
             transition={{ duration: 0.7, delay: 0.35 }}
             className="mt-6 max-w-xl text-lg text-muted-foreground"
           >
-            I help brands run influencer campaigns with Fameo Media — finding the right creators,
-            negotiating the deal and getting the content live. This side of my work is entirely
-            human-led: no AI anywhere in it.
+            I help brands run influencer campaigns with Fameo Media — a network of 5,000+ mid to
+            high tier creators and bloggers, matched to the right audience, negotiated and taken
+            live. This side of my work is entirely human-led: no AI anywhere in it.
+
           </motion.p>
 
           <motion.div
