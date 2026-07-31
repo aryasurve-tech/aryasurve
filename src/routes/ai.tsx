@@ -8,7 +8,6 @@ import {
   Magnetic,
   Marquee,
   Parallax,
-  ScrollScale,
   TiltCard,
   WordReveal,
 } from "@/components/site/Motion";
