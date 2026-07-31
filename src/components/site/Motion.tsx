@@ -124,7 +124,7 @@ export function Magnetic({
 }
 
 /* ---------------- 3D tilt card ---------------- */
-export function TiltCard({ children, className }: { children: ReactNode; className?: string }) {
+export function TiltCard({ children, className }: { children: ReactNode; className?: string | undefined }) {
   const rx = useMotionValue(0);
   const ry = useMotionValue(0);
   const srx = useSpring(rx, { stiffness: 200, damping: 20 });
@@ -200,7 +200,7 @@ export function CountUp({
 }
 
 /* ---------------- Scroll-scaling section wrapper ---------------- */
-export function ScrollScale({ children, className }: { children: ReactNode; className?: string }) {
+export function ScrollScale({ children, className }: { children: ReactNode; className?: string | undefined }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center center"] });
   const scale = useTransform(scrollYProgress, [0, 1], [0.92, 1]);
@@ -250,7 +250,7 @@ export function Marquee({
 }
 
 /* ---------------- Blob / aurora background ---------------- */
-export function Aurora({ className }: { className?: string }) {
+export function Aurora({ className }: { className?: string | undefined }) {
   return (
     <div className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)} aria-hidden>
       <motion.div
