@@ -4,6 +4,15 @@ import { ArrowRight, Users, Handshake, LineChart, ClipboardList } from "lucide-r
 import influencerImg from "@/assets/influencer.jpg";
 import campaignImg from "@/assets/campaign.jpg";
 import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
+import {
+  Aurora,
+  CountUp,
+  Magnetic,
+  Parallax,
+  ScrollScale,
+  TiltCard,
+  WordReveal,
+} from "@/components/site/Motion";
 
 export const Route = createFileRoute("/influencer-marketing")({
   head: () => ({
@@ -53,6 +62,7 @@ function InfluencerMarketing() {
     <>
       <section className="relative overflow-hidden border-b border-border">
         <div className="pointer-events-none absolute inset-0 grid-lines opacity-50" />
+        <Aurora />
         <div className="relative mx-auto max-w-6xl px-5 pt-16 pb-16 md:pt-24">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -89,7 +99,10 @@ function InfluencerMarketing() {
             transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="mt-12 overflow-hidden rounded-[2rem] border border-border bg-surface"
           >
-            <img
+            <motion.img
+              initial={{ scale: 1.18 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.7, ease: [0.22, 1, 0.36, 1] }}
               src={influencerImg}
               alt="Phone on a tripod with a ring light, set up for creator content"
               width={1280}
@@ -108,8 +121,10 @@ function InfluencerMarketing() {
             { value: "5", label: "Core niches" },
             { value: "0", label: "Agency fee on a trial campaign" },
           ].map((s) => (
-            <StaggerItem key={s.label} className="text-center md:text-left">
-              <p className="font-display text-3xl md:text-4xl">{s.value}</p>
+            <StaggerItem key={s.label} className="group text-center md:text-left">
+              <p className="font-display text-3xl transition-colors group-hover:text-accent md:text-4xl">
+                <CountUp value={s.value} />
+              </p>
               <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
             </StaggerItem>
           ))}
@@ -122,7 +137,7 @@ function InfluencerMarketing() {
             Niches we cover
           </p>
           <h2 className="mt-4 max-w-2xl text-4xl font-semibold md:text-5xl">
-            The right creator beats the biggest creator.
+            <WordReveal text="The right creator beats the biggest creator." />
           </h2>
           <p className="mt-4 max-w-xl text-muted-foreground">
             Creators are shortlisted on brand category, audience demographics, campaign objective and
@@ -139,9 +154,13 @@ function InfluencerMarketing() {
             "Verified bloggers",
           ].map((n) => (
             <StaggerItem key={n}>
-              <span className="inline-flex rounded-full border border-border bg-surface px-4 py-2 text-sm transition-colors hover:border-foreground/40">
+              <motion.span
+                whileHover={{ y: -4, scale: 1.06, backgroundColor: "var(--background)" }}
+                transition={{ type: "spring", stiffness: 320, damping: 18 }}
+                className="inline-flex rounded-full border border-border bg-surface px-4 py-2 text-sm hover:border-accent"
+              >
                 {n}
-              </span>
+              </motion.span>
             </StaggerItem>
           ))}
         </Stagger>
@@ -149,23 +168,28 @@ function InfluencerMarketing() {
 
       <section className="mx-auto max-w-6xl px-5 pb-20 md:pb-28">
         <Reveal>
-          <h2 className="max-w-2xl text-4xl font-semibold md:text-5xl">How a campaign runs</h2>
+          <h2 className="max-w-2xl text-4xl font-semibold md:text-5xl">
+            <WordReveal text="How a campaign runs" />
+          </h2>
         </Reveal>
 
         <Stagger className="mt-12 grid gap-6 sm:grid-cols-2">
           {steps.map((s, i) => (
-            <StaggerItem
-              key={s.title}
-              className="group rounded-3xl border border-border p-7 transition-all hover:-translate-y-1 hover:shadow-[0_24px_60px_-36px_rgba(0,0,0,0.35)]"
-            >
-              <div className="flex items-center gap-3">
-                <span className="font-display text-sm text-muted-foreground">
-                  0{i + 1}
-                </span>
-                <s.icon className="size-5 text-accent" />
-              </div>
-              <h3 className="mt-5 text-xl font-semibold">{s.title}</h3>
-              <p className="mt-2 text-muted-foreground">{s.body}</p>
+            <StaggerItem key={s.title}>
+              <TiltCard className="group h-full rounded-3xl border border-border p-7 transition-shadow hover:shadow-[0_24px_60px_-36px_rgba(0,0,0,0.35)]">
+                <div className="flex items-center gap-3">
+                  <span className="font-display text-sm text-muted-foreground">0{i + 1}</span>
+                  <motion.span
+                    whileHover={{ rotate: -10, scale: 1.15 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 14 }}
+                    className="inline-block"
+                  >
+                    <s.icon className="size-5 text-accent" />
+                  </motion.span>
+                </div>
+                <h3 className="mt-5 text-xl font-semibold">{s.title}</h3>
+                <p className="mt-2 text-muted-foreground">{s.body}</p>
+              </TiltCard>
             </StaggerItem>
           ))}
         </Stagger>
@@ -178,7 +202,7 @@ function InfluencerMarketing() {
               What brands get
             </p>
             <h2 className="mt-4 text-4xl font-semibold md:text-5xl">
-              Campaigns that hold up after the post goes live.
+              <WordReveal text="Campaigns that hold up after the post goes live." />
             </h2>
             <ul className="mt-8 space-y-4">
               {[
@@ -193,15 +217,17 @@ function InfluencerMarketing() {
                 </li>
               ))}
             </ul>
-            <Link
-              to="/contact"
-              className="mt-10 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background transition-transform hover:-translate-y-0.5"
-            >
-              Start a campaign
-              <ArrowRight className="size-4" />
-            </Link>
+            <Magnetic className="mt-10">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background"
+              >
+                Start a campaign
+                <ArrowRight className="size-4" />
+              </Link>
+            </Magnetic>
           </Reveal>
-          <Reveal delay={0.15}>
+          <Parallax distance={50}>
             <motion.img
               animate={{ y: [0, -12, 0] }}
               transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
@@ -212,12 +238,12 @@ function InfluencerMarketing() {
               height={960}
               className="w-full rounded-[2rem] border border-border bg-background object-cover"
             />
-          </Reveal>
+          </Parallax>
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-20 md:py-28">
-        <Reveal className="rounded-[2rem] border border-transparent bg-foreground p-8 text-background md:p-12">
+        <ScrollScale className="rounded-[2rem] border border-transparent bg-foreground p-8 text-background md:p-12">
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-background/70">
             Trial campaign
           </p>
@@ -236,7 +262,7 @@ function InfluencerMarketing() {
             Ask about a trial
             <ArrowRight className="size-4" />
           </Link>
-        </Reveal>
+        </ScrollScale>
       </section>
 
       <section className="mx-auto max-w-3xl px-5 py-20 text-center md:py-28">
