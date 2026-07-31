@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowRight, Megaphone, Cpu } from "lucide-react";
-import aryaAsset from "@/assets/arya.jpg.asset.json";
+import aryaAsset from "@/assets/arya2.jpg.asset.json";
 import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/")({
