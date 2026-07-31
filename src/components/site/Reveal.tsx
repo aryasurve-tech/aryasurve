@@ -22,7 +22,7 @@ export function Reveal({ children, delay = 0, y = 24, className }: RevealProps) 
   );
 }
 
-export function Stagger({ children, className }: { children: ReactNode; className?: string }) {
+export function Stagger({ children, className }: { children: ReactNode; className?: string | undefined }) {
   return (
     <motion.div
       className={className}
@@ -39,7 +39,7 @@ export function Stagger({ children, className }: { children: ReactNode; classNam
   );
 }
 
-export function StaggerItem({ children, className }: { children: ReactNode; className?: string }) {
+export function StaggerItem({ children, className }: { children: ReactNode; className?: string | undefined }) {
   return (
     <motion.div
       className={className}
