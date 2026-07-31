@@ -171,7 +171,7 @@ function Home() {
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-5 -left-4 rounded-2xl border border-border bg-background px-4 py-3 shadow-lg"
+              className="absolute -left-4 bottom-14 hidden rounded-2xl border border-border bg-background px-4 py-3 shadow-lg md:block"
             >
               <p className="font-display text-sm">Arya Surve</p>
               <p className="text-xs text-muted-foreground">Influencer marketing · AI</p>
