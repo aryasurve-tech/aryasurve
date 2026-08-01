@@ -148,7 +148,7 @@ function Home() {
               >
                 <motion.img
                   src={aryaAsset.url}
-                  alt="Arya Surve standing in front of green hills"
+                  alt="Arya Surve in sunglasses and a patterned shirt with mountains behind him"
                   width={1280}
                   height={960}
                   className="aspect-[4/5] w-full object-cover object-[60%_30%]"
