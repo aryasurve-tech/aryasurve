@@ -67,7 +67,7 @@ function About() {
           >
             <TiltCard className="overflow-hidden rounded-[2rem] border border-border bg-surface">
               <motion.img
-                src={aryaAsset.url}
+                src={aryaImg}
                 alt="Arya Surve outdoors in the hills"
                 width={1280}
                 height={960}
