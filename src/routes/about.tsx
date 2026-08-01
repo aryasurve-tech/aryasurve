@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowRight, Linkedin } from "lucide-react";
-import aryaAsset from "@/assets/arya2.jpg.asset.json";
+import aryaImg from "@/assets/arya2.jpg";
 import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
 import { Aurora, Magnetic, Parallax, TiltCard, WordReveal } from "@/components/site/Motion";
 
@@ -67,7 +67,7 @@ function About() {
           >
             <TiltCard className="overflow-hidden rounded-[2rem] border border-border bg-surface">
               <motion.img
-                src={aryaAsset.url}
+                src={aryaImg}
                 alt="Arya Surve outdoors in the hills"
                 width={1280}
                 height={960}

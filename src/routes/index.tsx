@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { useRef } from "react";
 import { ArrowRight, Megaphone, Cpu } from "lucide-react";
-import aryaAsset from "@/assets/arya2.jpg.asset.json";
+import aryaImg from "@/assets/arya2.jpg";
 import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
 import {
   Aurora,
@@ -147,7 +147,7 @@ function Home() {
                 className="overflow-hidden rounded-[2rem] border border-border bg-surface shadow-[0_30px_80px_-40px_rgba(0,0,0,0.35)]"
               >
                 <motion.img
-                  src={aryaAsset.url}
+                  src={aryaImg}
                   alt="Arya Surve in sunglasses and a patterned shirt with mountains behind him"
                   width={1280}
                   height={960}
