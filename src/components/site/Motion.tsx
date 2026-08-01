@@ -165,9 +165,12 @@ export function CountUp({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
-  const numeric = Number((value.match(/[\d.]+/g) || ["0"]).join("").replace(/\.(?=.*\.)/g, ""));
-  const prefix = value.slice(0, value.search(/[\d]/) === -1 ? 0 : value.search(/[\d]/));
-  const suffix = value.slice((prefix + String(value.match(/[\d.,]+/)?.[0] ?? "")).length);
+  // Only animate values with a single leading number (e.g. "1,000+", "5", "12.5k").
+  // Anything with multiple numbers ("100K–5M") is rendered verbatim.
+  const parts = value.match(/^([^\d]*)(\d[\d,]*(?:\.\d+)?)([^\d]*)$/);
+  const prefix = parts?.[1] ?? "";
+  const suffix = parts?.[3] ?? "";
+  const numeric = parts ? Number(parts[2]!.replace(/,/g, "")) : NaN;
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
@@ -189,6 +192,7 @@ export function CountUp({
   }
 
   const rounded = numeric % 1 === 0 ? Math.round(display) : Number(display.toFixed(1));
+
 
   return (
     <span ref={ref} className={className}>
