@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { useRef } from "react";
 import { ArrowRight, Megaphone, Cpu } from "lucide-react";
-import aryaAsset from "@/assets/arya2.jpg.asset.json";
+import aryaImg from "@/assets/arya2.jpg";
 import { Reveal, Stagger, StaggerItem } from "@/components/site/Reveal";
 import {
   Aurora,
